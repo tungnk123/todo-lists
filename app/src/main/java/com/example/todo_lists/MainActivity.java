@@ -18,8 +18,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView;
-    ListView listView;
+    ListView lvMain;
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>(){
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
                     if (activityResult.getResultCode() == Activity.RESULT_OK){
                         Intent intentBackFromSecond = activityResult.getData();
                         String name = intentBackFromSecond.getStringExtra("test");
-                        textView.setText("Hello" + name);
                     }
                 }
             }
@@ -37,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.textView_test);
+        lvMain = (ListView) findViewById(R.id.listViewMain);
+
 
     }
 
