@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     ListView lvMain;
     TodoItem todoItemNewOrEdited;
     List<TodoItem> list = new ArrayList<>();
-    // launcher de chuyen thong tin tu activity nay sang activity khac
+
+    //launcher de chuyen thong tin tu activity nay sang activity khac
     ActivityResultLauncher<Intent> launcher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -38,11 +40,12 @@ public class MainActivity extends AppCompatActivity {
                         boolean isDone = intentBackFromSecond.getBooleanExtra("isDone", false);
                         todoItemNewOrEdited = new TodoItem(title, " ", date, isDone);
 
-                        Toast.makeText(getApplicationContext(), title, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), todoItemNewOrEdited.title + date + isDone, Toast.LENGTH_LONG).show();
                         // add todoItem moi vao list va set adapter lai
                         list.add(todoItemNewOrEdited);
-                        list.add(new TodoItem(title, "descripton", date, true));
-                        TodoAdapter todoAdapter = new TodoAdapter(getBaseContext(), R.layout.todo_listview_item, list);
+//                        list.add(new TodoItem(title, "descripton", date, true));
+                        TodoAdapter todoAdapter = new TodoAdapter(getApplicationContext(), R.layout.todo_listview_item, list);
+
                         lvMain.setAdapter(todoAdapter);
                     }
                 }
@@ -54,13 +57,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lvMain = (ListView) findViewById(R.id.listViewMain);
+        TodoItem todoItem = new TodoItem("titleee", "descripton", "1/1/2000", false);
+        list.add(todoItem);
 
-        list.add(new TodoItem("titleee", "descripton", "1/1/2000", false));
-//        list.add(new TodoItem("title", "descripton", "1/1/2000", true));
-//        list.add(new TodoItem("title", "descripton", "1/1/2000", true));
-
-
-        TodoAdapter todoAdapter = new TodoAdapter(this, R.layout.todo_listview_item, list);
+        TodoAdapter todoAdapter = new TodoAdapter(getApplicationContext(), R.layout.todo_listview_item, list);
         lvMain.setAdapter(todoAdapter);
 
 
@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.item_new) {
-//            Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
             launcher.launch(new Intent(MainActivity.this, EditNewActivity.class));
         }
         return super.onOptionsItemSelected(item);
