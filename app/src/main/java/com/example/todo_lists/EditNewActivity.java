@@ -30,6 +30,7 @@ public class EditNewActivity extends AppCompatActivity {
         btnSave = (Button) findViewById(R.id.button_save);
         editTextTitle = (EditText) findViewById(R.id.editText_title);
 //        editTextDesc = (EditText)findViewById(R.id.editText_title);
+        datePicker = (DatePicker) findViewById(R.id.datePicker1);
         checkBoxIsDone = (CheckBox) findViewById(R.id.checkBox1);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +38,8 @@ public class EditNewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentBack = new Intent(getBaseContext(), MainActivity.class);
                 intentBack.putExtra("isDone", checkBoxIsDone.isChecked());
+                String date = datePicker.getDayOfMonth() + "/" +  (datePicker.getMonth() + 1 )+ "/" + datePicker.getYear();
+                intentBack.putExtra("date", date);
 //                intentBack.putExtra("desc",editTextDesc.getText().toString());
                 intentBack.putExtra("title", editTextTitle.getText().toString());
                 setResult(RESULT_OK, intentBack);

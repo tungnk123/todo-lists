@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intentBackFromSecond = activityResult.getData();
                         String title = intentBackFromSecond.getStringExtra("title");
 //                        String desc = intentBackFromSecond.getStringExtra("desc");
-                        String date = "1/1/2003";
+                        String date = intentBackFromSecond.getStringExtra("date");
                         boolean isDone = intentBackFromSecond.getBooleanExtra("isDone", false);
                         todoItemNewOrEdited = new TodoItem(title, " ", date, isDone);
 

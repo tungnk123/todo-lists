@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,22 +34,27 @@ public class TodoAdapter extends ArrayAdapter<TodoItem> {
             view = layoutInflater.inflate(this.resource, null);
         }
         TodoItem todoItem = getItem(position);
-        if (todoItem != null){
+        if (todoItem != null) {
             // lay thong tin trong view ra
             TextView tvTitle = (TextView) view.findViewById(R.id.textView_title_view);
 //            TextView tvDesc = (TextView) view.findViewById(R.id.textView);
+            TextView tvOrder = (TextView) view.findViewById(R.id.textView_order_view);
             TextView tvDate = (TextView) view.findViewById(R.id.textView_date_view);
             CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBox_view);
 
             //gan gia tri
-            if (tvTitle != null){
+            if (tvTitle != null) {
                 tvTitle.setText(todoItem.title);
             }
+            if (tvOrder != null) {
+                int order = position + 1;
+                tvOrder.setText("#" + order);
+            }
 //            tvDesc.setText("description");
-            if (tvDate != null){
+            if (tvDate != null) {
                 tvDate.setText(todoItem.date);
             }
-            if (checkBox != null){
+            if (checkBox != null) {
                 checkBox.setChecked(todoItem.isDone);
             }
         }
