@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.contextitem_edit:
                 TodoItem itemTransferToEdit = list.get(positionLongPress);
+                list.remove(positionLongPress);
                 Intent intentMainToEditActivity = new Intent(MainActivity.this, EditNewActivity.class);
                 intentMainToEditActivity.putExtra("date", itemTransferToEdit.date);
                 intentMainToEditActivity.putExtra("isDone", itemTransferToEdit.isDone);

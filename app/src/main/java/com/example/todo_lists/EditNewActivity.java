@@ -44,7 +44,9 @@ public class EditNewActivity extends AppCompatActivity {
 
         editTextTitle.setText(title);
         checkBoxIsDone.setChecked(isDone);
-        datePicker.set
+
+        String[] dates = date.split("/");
+        datePicker.updateDate(Integer.parseInt(dates[2]), Integer.parseInt(dates[1]) - 1, Integer.parseInt(dates[0]));
 
 
         //
