@@ -38,16 +38,26 @@ public class EditNewActivity extends AppCompatActivity {
 
         // Intent from main
         Intent intent = getIntent();
-        String date = intent.getStringExtra("date");
-        String title = intent.getStringExtra("title");
-        boolean isDone = intent.getBooleanExtra("isDone" ,false);
+        if (intent.getExtras() != null) {
+            String month = intent.getStringExtra("month");
+            String year = intent.getStringExtra("year");
+            String day = intent.getStringExtra("day");
+            String title = intent.getStringExtra("title");
+            boolean isDone = intent.getBooleanExtra("isDone", false);
 
-        editTextTitle.setText(title);
-        checkBoxIsDone.setChecked(isDone);
+            if (!title.isEmpty()) {
+                editTextTitle.setText(title);
+            }
+            checkBoxIsDone.setChecked(isDone);
 
-        String[] dates = date.split("/");
-        datePicker.updateDate(Integer.parseInt(dates[2]), Integer.parseInt(dates[1]) - 1, Integer.parseInt(dates[0]));
 
+            int year_int = Integer.parseInt(year);
+            int day_int = Integer.parseInt(day);
+            int month_int = Integer.parseInt(month);
+
+            datePicker.updateDate(year_int, month_int - 1, day_int);
+
+        }
 
         //
 
@@ -56,7 +66,7 @@ public class EditNewActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intentBack = new Intent(getBaseContext(), MainActivity.class);
                 intentBack.putExtra("isDone", checkBoxIsDone.isChecked());
-                String date = datePicker.getDayOfMonth() + "/" +  (datePicker.getMonth() + 1 )+ "/" + datePicker.getYear();
+                String date = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
                 intentBack.putExtra("date", date);
 //                intentBack.putExtra("desc",editTextDesc.getText().toString());
                 intentBack.putExtra("title", editTextTitle.getText().toString());

@@ -110,8 +110,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.contextitem_edit:
                 TodoItem itemTransferToEdit = list.get(positionLongPress);
                 list.remove(positionLongPress);
+                String[] dates = itemTransferToEdit.date.split("/");
+
                 Intent intentMainToEditActivity = new Intent(MainActivity.this, EditNewActivity.class);
-                intentMainToEditActivity.putExtra("date", itemTransferToEdit.date);
+                intentMainToEditActivity.putExtra("month", dates[1]);
+                intentMainToEditActivity.putExtra("year", dates[2]);
+                intentMainToEditActivity.putExtra("day", dates[0]);
+                
                 intentMainToEditActivity.putExtra("isDone", itemTransferToEdit.isDone);
                 intentMainToEditActivity.putExtra("title", itemTransferToEdit.title);
                 Toast.makeText(getApplicationContext(), "edit", Toast.LENGTH_SHORT).show();
