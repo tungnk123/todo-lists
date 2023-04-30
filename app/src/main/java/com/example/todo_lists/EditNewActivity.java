@@ -22,6 +22,9 @@ public class EditNewActivity extends AppCompatActivity {
     DatePicker datePicker;
     CheckBox checkBoxIsDone;
 
+    TextView tvTitle;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,19 @@ public class EditNewActivity extends AppCompatActivity {
 //        editTextDesc = (EditText)findViewById(R.id.editText_title);
         datePicker = (DatePicker) findViewById(R.id.datePicker1);
         checkBoxIsDone = (CheckBox) findViewById(R.id.checkBox1);
+
+        // Intent from main
+        Intent intent = getIntent();
+        String date = intent.getStringExtra("date");
+        String title = intent.getStringExtra("title");
+        boolean isDone = intent.getBooleanExtra("isDone" ,false);
+
+        editTextTitle.setText(title);
+        checkBoxIsDone.setChecked(isDone);
+        datePicker.set
+
+
+        //
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

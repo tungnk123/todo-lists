@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/contextitem_edit"
+        android:title="Edit" />
+    <item
+        android:id="@+id/contextitem_delete"
+        android:title="Delete" />
+    <item
+        android:id="@+id/contextitem_markasdone"
+        android:title="Mark as done" />
 
 </menu>
